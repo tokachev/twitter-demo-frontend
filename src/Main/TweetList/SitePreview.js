@@ -33,10 +33,10 @@ const PreviewText = styled.p`
 
 const PreviewContent = styled.div``;
 
-export default props => (
+export default () => (
   <SitePreview>
     <PreviewImage
-      src={process.env.PUBLIC_URL + "img/preview.png"}
+      src={`${process.env.PUBLIC_URL}img/preview.png`}
       alt="preview"
     />
     <PreviewContent>

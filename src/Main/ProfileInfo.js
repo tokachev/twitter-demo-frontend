@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import Button from "../Button";
-import CommonFollowers from "./CommonFollowers/";
-import Media from "./Media/";
-import { Link } from "react-router-dom";
-import tickIcon from "../img/icon-tick.svg";
-import locationIcon from "../img/icon-location.svg";
-import linkIcon from "../img/icon-link.svg";
-import joinedIcon from "../img/icon-joined.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Button from '../Button';
+import CommonFollowers from './CommonFollowers';
+import Media from './Media';
+import tickIcon from '../img/icon-tick.svg';
+import locationIcon from '../img/icon-location.svg';
+import linkIcon from '../img/icon-link.svg';
+import joinedIcon from '../img/icon-joined.svg';
 
 const ProfileInfo = styled.div`
   position: relative;
@@ -102,36 +102,51 @@ const InfoButton = Button.extend`
   padding: 12px 35px;
 `;
 
-export default props => (
+export default ({ user }) => (
   <ProfileInfo>
-    <Avatar src={process.env.PUBLIC_URL + "img/avatar.png"} alt="Avatar" />
+    <Avatar src={`${process.env.PUBLIC_URL}img/avatar.png`} alt="Avatar" />
     <User>
-      <UserName>Every Interaction</UserName>
+      <UserName>
+        {user.name}
+      </UserName>
       <img src={tickIcon} alt="Verified" />
     </User>
     <Follow>
-      <FollowLink to="/EveryInteract">@EveryInteract</FollowLink>
-      <FollowsMessage>Follows you</FollowsMessage>
+      <FollowLink to={user.login}>
+        {`@${user.login}`}
+      </FollowLink>
+      <FollowsMessage>
+        Follows you
+      </FollowsMessage>
     </Follow>
     <Description>
-      UX Design studio focussed problem solving creativity. Design to us is how
-      can we make things *work* amazing.
+      {user.description}
     </Description>
     <Info>
       <Icon src={locationIcon} alt="Location" />
-      <Text>London, UK</Text>
+      <Text>
+        {user.location}
+      </Text>
     </Info>
     <Info>
       <Icon src={linkIcon} alt="Website" />
-      <Site href="#">everyinteraction.com</Site>
+      <Site href="#">
+        {user.site}
+      </Site>
     </Info>
     <Info>
       <Icon src={joinedIcon} alt="Joined at" />
-      <Text>Joined May 2008</Text>
+      <Text>
+        {user.startDate}
+      </Text>
     </Info>
     <Buttons>
-      <InfoButton>Tweet to</InfoButton>
-      <InfoButton>Message</InfoButton>
+      <InfoButton>
+        Tweet to
+      </InfoButton>
+      <InfoButton>
+        Message
+      </InfoButton>
     </Buttons>
     <CommonFollowers />
     <Media />

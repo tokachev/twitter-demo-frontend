@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import mediaIcon from "./icon-media.svg";
+import React from 'react';
+import styled from 'styled-components';
+import {Link} from 'react-router-dom';
+import mediaIcon from './icon-media.svg';
 
 const Title = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Icon = styled.img`
   max-height: 15px;
 `;
 
-const MediaLink = styled(Link)`
+const MediaLink = styled (Link)`
   color: #1da1f2;
   font-size: 14px;
   line-height: 16px;
@@ -44,61 +44,55 @@ const Image = styled.img`
   }
 `;
 
-export default props => (
+const medias = [
+  {
+    to: '/media1',
+    src: `${process.env.PUBLIC_URL}img/media-1.png`,
+    alt: 'Media 1',
+  },
+  {
+    to: '/media2',
+    src: `${process.env.PUBLIC_URL}img/media-2.png`,
+    alt: 'Media 2',
+  },
+  {
+    to: '/media3',
+    src: `${process.env.PUBLIC_URL}img/media-3.png`,
+    alt: 'Media 3',
+  },
+  {
+    to: '/media4',
+    src: `${process.env.PUBLIC_URL}img/media-4.png`,
+    alt: 'Media 4',
+  },
+  {
+    to: '/media5',
+    src: `${process.env.PUBLIC_URL}img/media-5.png`,
+    alt: 'Media 5',
+  },
+  {
+    to: '/media6',
+    src: `${process.env.PUBLIC_URL}img/media-6.png`,
+    alt: 'Media 6',
+  },
+];
+
+export default () => (
   <div>
     <Title>
       <Icon src={mediaIcon} alt="Photos and Videos" />
-      <MediaLink to="/EveryInteract/media">522 Photos and videos</MediaLink>
+      <MediaLink to="/EveryInteract/media">
+        522 Photos and videos
+      </MediaLink>
     </Title>
     <List>
-      <Media>
-        <Link to="/media1">
-          <Image
-            src={process.env.PUBLIC_URL + "img/media-1.png"}
-            alt="Media 1"
-          />
-        </Link>
-      </Media>
-      <Media>
-        <Link to="/media2">
-          <Image
-            src={process.env.PUBLIC_URL + "img/media-2.png"}
-            alt="Media 2"
-          />
-        </Link>
-      </Media>
-      <Media>
-        <Link to="/media3">
-          <Image
-            src={process.env.PUBLIC_URL + "img/media-3.png"}
-            alt="Media 3"
-          />
-        </Link>
-      </Media>
-      <Media>
-        <Link to="/media4">
-          <Image
-            src={process.env.PUBLIC_URL + "img/media-4.png"}
-            alt="Media 4"
-          />
-        </Link>
-      </Media>
-      <Media>
-        <Link to="/media5">
-          <Image
-            src={process.env.PUBLIC_URL + "img/media-5.png"}
-            alt="Media 5"
-          />
-        </Link>
-      </Media>
-      <Media>
-        <Link to="/media6">
-          <Image
-            src={process.env.PUBLIC_URL + "img/media-6.png"}
-            alt="Media 6"
-          />
-        </Link>
-      </Media>
+      {medias.map (media => (
+        <Media>
+          <Link to={media.to}>
+            <Image src={media.src} alt={media.alt} />
+          </Link>
+        </Media>
+      ))}
     </List>
   </div>
 );

@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import SolidButton from "./Button";
-import homeIcon from "./img/icon-home.svg";
-import momentsIcon from "./img/icon-moments.svg";
-import notificationsIcon from "./img/icon-notifications.svg";
-import messagesIcon from "./img/icon-messages.svg";
-import twitterLogo from "./img/twitter-logo.svg";
-import magnifierIcon from "./img/icon-magnifier.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import SolidButton from './Button';
+import homeIcon from './img/icon-home.svg';
+import momentsIcon from './img/icon-moments.svg';
+import notificationsIcon from './img/icon-notifications.svg';
+import messagesIcon from './img/icon-messages.svg';
+import twitterLogo from './img/twitter-logo.svg';
+import magnifierIcon from './img/icon-magnifier.svg';
 
 const Header = styled.header`
   padding-top: 6px;
@@ -66,27 +66,35 @@ const Avatar = styled.img`
   margin-right: 18px;
 `;
 
-export default () => (
+export default ({ user }) => (
   <Header>
     <div className="container">
       <div className="row middle-xs between-xs">
         <Navigation>
           <div className="row middle-xs">
-            <Tab to="/EveryInteract">
+            <Tab to={user.login}>
               <Icon src={homeIcon} alt="Home" />
-              <Text>Home</Text>
+              <Text>
+                Home
+              </Text>
             </Tab>
-            <Tab exact to="/EveryInteract/moments">
+            <Tab exact to="moments">
               <Icon src={momentsIcon} alt="Moments" />
-              <Text>Moments</Text>
+              <Text>
+                Moments
+              </Text>
             </Tab>
-            <Tab exact to="/EveryInteract/notifications">
+            <Tab exact to="notifications">
               <Icon src={notificationsIcon} alt="Notifications" />
-              <Text>Notifications</Text>
+              <Text>
+                Notifications
+              </Text>
             </Tab>
-            <Tab exact to="/EveryInteract/messages">
+            <Tab exact to="messages">
               <Icon src={messagesIcon} alt="Messages" />
-              <Text>Messages</Text>
+              <Text>
+                Messages
+              </Text>
             </Tab>
           </div>
         </Navigation>
@@ -95,13 +103,15 @@ export default () => (
         </div>
         <div className="row middle-xs">
           <Search type="search" placeholder="Search Twitter" />
-          <AvatarLink to="/EveryInteract/settings">
+          <AvatarLink to="settings">
             <Avatar
-              src={process.env.PUBLIC_URL + "img/avatar.png"}
+              src={`${process.env.PUBLIC_URL}img/avatar.png`}
               alt="Settings"
             />
           </AvatarLink>
-          <SolidButton>Tweet</SolidButton>
+          <SolidButton>
+            Tweet
+          </SolidButton>
         </div>
       </div>
     </div>

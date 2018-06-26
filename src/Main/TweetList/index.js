@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import Menu from "./Menu";
-import Tweet from "./Tweet";
-import SitePreview from "./SitePreview";
+import React from 'react';
+import styled from 'styled-components';
+import Menu from './Menu';
+import Tweet from './Tweet';
+import SitePreview from './SitePreview';
 
 const TweetList = styled.div`
   display: flex;
@@ -41,33 +41,44 @@ const TweetImage = styled.img`
   max-width: 100%;
 `;
 
-export default props => (
+export default ({ user }) => (
   <div>
     <Menu />
     <TweetList>
       <Tweet
-        username="Every Interaction"
-        login="EveryInteract"
+        username={user.name}
+        login={user.login}
         date="2 Mar 2015"
         retweets={17}
         loves={47}
-        liked={true}
-        pinned={true}
       >
         <LargeText>
-          We’ve made some more resources for all you wonderful{" "}
-          <TweetTag>#design</TweetTag> folk{" "}
-          <TweetLink href="a">everyinteraction.com/resources/</TweetLink>{" "}
-          <TweetTag>#webdesign</TweetTag> <TweetTag>#UI</TweetTag>
+          We’ve made some more resources for all you wonderful
+          {' '}
+          <TweetTag>
+            #design
+          </TweetTag>
+          folk
+          {' '}
+          <TweetLink href="a">
+            everyinteraction.com/resources/
+          </TweetLink>
+          {' '}
+          <TweetTag>
+            #webdesign
+          </TweetTag>
+          <TweetTag>
+            #UI
+          </TweetTag>
         </LargeText>
         <TweetImage
-          src={process.env.PUBLIC_URL + "img/tweet-image.png"}
+          src={`${process.env.PUBLIC_URL}img/tweet-image.png`}
           alt="Tweet Image"
         />
       </Tweet>
       <Tweet
-        username="Every Interaction"
-        login="EveryInteract"
+        username={user.name}
+        login={user.login}
         date="23h"
         comments={1}
         retweets={4}
@@ -76,13 +87,16 @@ export default props => (
         pinned={false}
       >
         <SmallText>
-          Our new website concept; Taking you from… @ Every Interaction{" "}
-          <TweetLink href="a">instagram.com/p/BNFGrfhBP3M/</TweetLink>
+          Our new website concept; Taking you from… @ Every Interaction
+          {' '}
+          <TweetLink href="a">
+            instagram.com/p/BNFGrfhBP3M/
+          </TweetLink>
         </SmallText>
       </Tweet>
       <Tweet
-        username="Every Interaction"
-        login="EveryInteract"
+        username={user.name}
+        login={user.login}
         date="Nov 18"
         liked={false}
         pinned={false}

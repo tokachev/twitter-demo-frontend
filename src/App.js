@@ -1,20 +1,53 @@
-import React from "react";
-import PersonalPage from "./PersonalPage";
-import { Helmet } from "react-helmet";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import {
+  BrowserRouter, Route, Redirect, Switch,
+} from 'react-router-dom';
+import PersonalPage from './PersonalPage';
 
-const App = () => (
-  <div>
+const NotFound = () => (
+  <React.Fragment>
     <Helmet>
-      <title>Twitter</title>
+      <title>
+        404 Not Found
+      </title>
     </Helmet>
-    <Router>
-      <div>
-        <Route path="/EveryInteract" component={PersonalPage} />
-        <Redirect from="/" to="/EveryInteract" />
-      </div>
-    </Router>
-  </div>
+    <h1>
+      404 Not Found
+    </h1>
+  </React.Fragment>
 );
 
-export default App;
+const Template = ({ location }) => (
+  <React.Fragment>
+    <Helmet>
+      <title>
+        {location.pathname.substr(1)}
+      </title>
+    </Helmet>
+    <h1>
+      {location.pathname.substr(1)}
+    </h1>
+  </React.Fragment>
+);
+
+export default () => (
+  <BrowserRouter>
+    <React.Fragment>
+      <Helmet>
+        <title>
+          Twitter
+        </title>
+      </Helmet>
+      <Switch>
+        <Redirect exact from="/" to="/EveryInteract" />
+        <Route path="/moments" component={Template} />
+        <Route path="/notifications" component={Template} />
+        <Route path="/settings" component={Template} />
+        <Route path="/messages" component={Template} />
+        <Route path="/:user" component={PersonalPage} />
+        <Route component={NotFound} />
+      </Switch>
+    </React.Fragment>
+  </BrowserRouter>
+);
