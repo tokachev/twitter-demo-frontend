@@ -104,51 +104,53 @@ const InfoButton = Button.extend`
 
 export default ({ user }) => (
   <ProfileInfo>
-    <Avatar src={`${process.env.PUBLIC_URL}img/avatar.png`} alt="Avatar" />
+    <Avatar src={`${process.env.PUBLIC_URL}img/${user.avatar}`} alt={user.name} />
     <User>
       <UserName>
         {user.name}
       </UserName>
-      <img src={tickIcon} alt="Verified" />
+      {user.verified && <img src={tickIcon} alt="Verified" />}
     </User>
     <Follow>
       <FollowLink to={user.login}>
         {`@${user.login}`}
       </FollowLink>
+      {user.follows && (
       <FollowsMessage>
-        Follows you
+Follows you
       </FollowsMessage>
+      )}
     </Follow>
     <Description>
       {user.description}
     </Description>
     <Info>
-      <Icon src={locationIcon} alt="Location" />
+      <Icon src={locationIcon} alt={user.location} />
       <Text>
         {user.location}
       </Text>
     </Info>
     <Info>
-      <Icon src={linkIcon} alt="Website" />
+      <Icon src={linkIcon} alt={user.site} />
       <Site href="#">
         {user.site}
       </Site>
     </Info>
     <Info>
-      <Icon src={joinedIcon} alt="Joined at" />
+      <Icon src={joinedIcon} alt={user.startDate} />
       <Text>
         {user.startDate}
       </Text>
     </Info>
     <Buttons>
       <InfoButton>
-        Tweet to
+Tweet to
       </InfoButton>
       <InfoButton>
-        Message
+Message
       </InfoButton>
     </Buttons>
-    <CommonFollowers />
+    <CommonFollowers user={user} />
     <Media />
   </ProfileInfo>
 );

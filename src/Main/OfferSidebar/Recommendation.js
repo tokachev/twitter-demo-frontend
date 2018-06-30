@@ -78,7 +78,7 @@ export default ({
 }) => (
   <Recommendation>
     <Avatar
-      src={`${process.env.PUBLIC_URL}img/${avatar}.png`}
+      src={`${process.env.PUBLIC_URL}img/${avatar}`}
       alt={name}
     />
     <Follow>

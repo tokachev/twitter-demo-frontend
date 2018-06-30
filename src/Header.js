@@ -66,31 +66,31 @@ const Avatar = styled.img`
   margin-right: 18px;
 `;
 
-export default ({ user }) => (
+export default () => (
   <Header>
     <div className="container">
       <div className="row middle-xs between-xs">
         <Navigation>
           <div className="row middle-xs">
-            <Tab to={user.login}>
+            <Tab to="/">
               <Icon src={homeIcon} alt="Home" />
               <Text>
                 Home
               </Text>
             </Tab>
-            <Tab exact to="moments">
+            <Tab exact to="/moments">
               <Icon src={momentsIcon} alt="Moments" />
               <Text>
                 Moments
               </Text>
             </Tab>
-            <Tab exact to="notifications">
+            <Tab exact to="/notifications">
               <Icon src={notificationsIcon} alt="Notifications" />
               <Text>
                 Notifications
               </Text>
             </Tab>
-            <Tab exact to="messages">
+            <Tab exact to="/messages">
               <Icon src={messagesIcon} alt="Messages" />
               <Text>
                 Messages
@@ -105,7 +105,7 @@ export default ({ user }) => (
           <Search type="search" placeholder="Search Twitter" />
           <AvatarLink to="settings">
             <Avatar
-              src={`${process.env.PUBLIC_URL}img/avatar.png`}
+              src={`${process.env.PUBLIC_URL}img/avatar-1.png`}
               alt="Settings"
             />
           </AvatarLink>

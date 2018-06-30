@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import followers from '../../data/followers';
 import followersIcon from './img/icon-followers.svg';
 
 const CommonFollowers = styled.div`
@@ -16,7 +17,7 @@ const Icon = styled.img`
   max-height: 15px;
 `;
 
-const FollowersLink = styled (Link)`
+const FollowersLink = styled(Link)`
   color: #1da1f2;
   font-size: 14px;
   line-height: 16px;
@@ -47,52 +48,19 @@ const Avatar = styled.img`
   }
 `;
 
-const followers = [
-  {
-    to: '/follower1',
-    src: `${process.env.PUBLIC_URL}img/follower-1.png`,
-    alt: 'Follower 1',
-  },
-  {
-    to: '/follower2',
-    src: `${process.env.PUBLIC_URL}img/follower-2.png`,
-    alt: 'Follower 2',
-  },
-  {
-    to: '/follower3',
-    src: `${process.env.PUBLIC_URL}img/follower-3.png`,
-    alt: 'Follower 3',
-  },
-  {
-    to: '/follower4',
-    src: `${process.env.PUBLIC_URL}img/follower-4.png`,
-    alt: 'Follower 4',
-  },
-  {
-    to: '/follower5',
-    src: `${process.env.PUBLIC_URL}img/follower-5.png`,
-    alt: 'Follower 5',
-  },
-  {
-    to: '/follower6',
-    src: `${process.env.PUBLIC_URL}img/follower-6.png`,
-    alt: 'Follower 6',
-  },
-];
-
-export default () => (
+export default ({ user }) => (
   <CommonFollowers>
     <Title>
       <Icon src={followersIcon} alt="Followers you now" />
-      <FollowersLink to="/EveryInteract/common_followers">
+      <FollowersLink to={`/${user.login}/common-followers`}>
         6 Followers you now
       </FollowersLink>
     </Title>
     <List>
-      {followers.map (follower => (
+      {followers.map(follower => (
         <Follower>
-          <Link to={follower.to}>
-            <Avatar src={follower.src} alt={follower.alt} />
+          <Link to={`/${follower.login}`}>
+            <Avatar src={`${process.env.PUBLIC_URL}img/${follower.avatar}`} alt={follower.name} />
           </Link>
         </Follower>
       ))}

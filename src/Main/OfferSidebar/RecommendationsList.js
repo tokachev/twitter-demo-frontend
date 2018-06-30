@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Recommendation from './Recommendation';
+import recommendations from '../../data/recommendations';
 import peopleIcon from '../../img/icon-people.svg';
 
 const Wrapper = styled.div`
@@ -28,7 +29,19 @@ const Separator = styled.span`
   margin-right: 5px;
 `;
 
-const RecommendLink = styled (NavLink)`
+const RecommendLink = styled(NavLink)`
+  font-size: 13px;
+  line-height: 15px;
+  color: #1da1f2;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const Refresh = styled.a`
   font-size: 13px;
   line-height: 15px;
   color: #1da1f2;
@@ -49,48 +62,27 @@ const FindLink = RecommendLink.extend`
   margin-left: 10px;
 `;
 
-const recommendations = [
-  {
-    avatar: 'avatar-1',
-    name: 'AppleInsider',
-    login: 'appleinsider',
-    verified: false,
-  },
-  {
-    avatar: 'avatar-2',
-    name: 'Creode',
-    login: 'Creode',
-    verified: true,
-  },
-  {
-    avatar: 'avatar-3',
-    name: 'Epiphany Search',
-    login: 'EpiphanySearch',
-    verified: false,
-  },
-];
-
 export default () => (
   <Wrapper>
     <List>
       <Title>
         <Text>
-          Who to follow
+Who to follow
         </Text>
         <Separator>
-          •
+•
         </Separator>
-        <RecommendLink to="/recomendations">
-          Refresh
-        </RecommendLink>
+        <Refresh>
+Refresh
+        </Refresh>
         <Separator>
-          •
+•
         </Separator>
-        <RecommendLink to="/recomendations/all">
-          View All
+        <RecommendLink to="/recommendations">
+View All
         </RecommendLink>
       </Title>
-      {recommendations.map (recommendation => (
+      {recommendations.map(recommendation => (
         <Recommendation
           avatar={recommendation.avatar}
           name={recommendation.name}
@@ -100,8 +92,8 @@ export default () => (
       ))}
       <FindPeople>
         <img src={peopleIcon} alt="Find people you know" />
-        <FindLink to="/find">
-          Find people you know
+        <FindLink to="/find_people">
+Find people you know
         </FindLink>
       </FindPeople>
     </List>

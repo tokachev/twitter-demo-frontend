@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import SitePreview from './SitePreview';
 import commentsIcon from './img/icon-comments.svg';
 import retweetsIcon from './img/icon-retweet.svg';
 import lovesIcon from './img/icon-loves.svg';
@@ -100,36 +101,62 @@ const Pinned = styled.div`
   margin-left: 48px;
 `;
 
+const Text = styled.p`
+  font-weight: 100;
+  margin-top: 0px;
+  margin-bottom: 17px;
+  font-size: ${({ large }) => (large ? '25px' : '16px')};
+  line-height: ${({ large }) => (large ? '30px' : '22px')};
+`;
+
+const TweetImage = styled.img`
+  max-width: 100%;
+`;
+
 export default ({
-  pinned, username, login, date, children, comments, retweets, liked, loves,
+  date,
+  retweets,
+  loves,
+  pinned,
+  liked,
+  largeText,
+  text,
+  comments,
+  image,
+  preview,
+  user,
 }) => (
   <div>
     {pinned && (
       <Pinned>
         <img src={pinnedIcon} alt="Pinned Tweet" />
         <PinnedMessage>
-        Pinned Tweet
+Pinned Tweet
         </PinnedMessage>
       </Pinned>
     )}
     <Tweet>
-      <Avatar src={`${process.env.PUBLIC_URL}img/avatar.png`} alt="Avatar" />
+      <Avatar src={`${process.env.PUBLIC_URL}img/${user.avatar}`} alt="Avatar" />
       <div className="col-xs">
         <UserInfo>
           <UserName>
-            {username}
+            {user.name}
           </UserName>
-          <UserLogin to="/EveryInteract">
-          @
-            {login}
+          <UserLogin to={`/${user.login}`}>
+            @
+            {user.login}
           </UserLogin>
           <TweetDate>
-          •
+            •
             {date}
           </TweetDate>
         </UserInfo>
         <Content>
-          {children}
+          <Text large={largeText}>
+            {text}
+          </Text>
+          {image && <TweetImage src={image} alt="Tweet Image" />}
+          {preview && <SitePreview data={preview} />}
         </Content>
         <Actions>
           <Action>
