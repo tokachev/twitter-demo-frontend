@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ProfileStat from './ProfileStat';
-import TweetList from './TweetList';
+import Tweets from './Tweets';
 import ProfileInfo from './ProfileInfo';
 import OfferSidebar from './OfferSidebar';
 
@@ -22,7 +22,7 @@ export default ({ user }) => (
           <ProfileInfo user={user} />
         </div>
         <div className="col-xs-6">
-          <TweetList user={user} />
+          <Tweets user={user} />
         </div>
         <div className="col-xs-3">
           <OfferSidebar />

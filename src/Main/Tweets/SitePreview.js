@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const SitePreview = styled.div`
   display: flex;
@@ -40,13 +40,17 @@ export default () => (
       alt="preview"
     />
     <PreviewContent>
-      <PreviewHeader>The Future of Web Fonts</PreviewHeader>
+      <PreviewHeader>
+The Future of Web Fonts
+      </PreviewHeader>
       <PreviewText>
         The Future of Web Fonts We love typefaces. They give our sites and
         applications personalized feel. They convey the information and tell a
         story. They establish information hierarchy. But they’re…
       </PreviewText>
-      <Site href="#">vilijamis.com</Site>
+      <Site href="#">
+vilijamis.com
+      </Site>
     </PreviewContent>
   </SitePreview>
 );

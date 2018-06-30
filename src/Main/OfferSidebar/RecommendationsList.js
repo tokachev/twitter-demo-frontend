@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Recommendation from './Recommendation';
 import peopleIcon from '../../img/icon-people.svg';
 
@@ -28,7 +28,7 @@ const Separator = styled.span`
   margin-right: 5px;
 `;
 
-const RecommendLink = styled (NavLink)`
+const RecommendLink = styled(NavLink)`
   font-size: 13px;
   line-height: 15px;
   color: #1da1f2;
@@ -90,7 +90,7 @@ export default () => (
           View All
         </RecommendLink>
       </Title>
-      {recommendations.map (recommendation => (
+      {recommendations.map(recommendation => (
         <Recommendation
           avatar={recommendation.avatar}
           name={recommendation.name}
@@ -100,7 +100,7 @@ export default () => (
       ))}
       <FindPeople>
         <img src={peopleIcon} alt="Find people you know" />
-        <FindLink to="/find">
+        <FindLink to="/find_people">
           Find people you know
         </FindLink>
       </FindPeople>
