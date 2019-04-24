@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import commentsIcon from "./img/icon-comments.svg";
-import retweetsIcon from "./img/icon-retweet.svg";
-import lovesIcon from "./img/icon-loves.svg";
-import lovesRedIcon from "./img/icon-loves-red.svg";
-import envelopeIcon from "./img/icon-envelope.svg";
-import pinnedIcon from "./img/icon-pinned.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import SitePreview from './SitePreview';
+import commentsIcon from './img/icon-comments.svg';
+import retweetsIcon from './img/icon-retweet.svg';
+import lovesIcon from './img/icon-loves.svg';
+import lovesRedIcon from './img/icon-loves-red.svg';
+import envelopeIcon from './img/icon-envelope.svg';
+import pinnedIcon from './img/icon-pinned.svg';
 
 const Avatar = styled.img`
   height: 50px;
@@ -73,7 +74,7 @@ const ActionIcon = styled.img`
 `;
 
 const ActionLove = styled(ActionIcon)`
-  color: ${props => (props.liked === "true" ? "red" : "white")};
+  color: ${({ liked }) => (liked ? 'red' : 'white')};
 `;
 
 const ActionNumber = styled.span`
@@ -100,41 +101,89 @@ const Pinned = styled.div`
   margin-left: 48px;
 `;
 
-export default props => (
+const Text = styled.p`
+  font-weight: 100;
+  margin-top: 0px;
+  margin-bottom: 17px;
+  font-size: ${({ large }) => (large ? '25px' : '16px')};
+  line-height: ${({ large }) => (large ? '30px' : '22px')};
+`;
+
+const TweetImage = styled.img`
+  max-width: 100%;
+`;
+
+export default ({
+  date,
+  retweets,
+  loves,
+  pinned,
+  liked,
+  largeText,
+  text,
+  comments,
+  image,
+  preview,
+  user,
+}) => (
   <div>
-    {props.pinned && (
+    {pinned && (
       <Pinned>
         <img src={pinnedIcon} alt="Pinned Tweet" />
-        <PinnedMessage>Pinned Tweet</PinnedMessage>
+        <PinnedMessage>
+Pinned Tweet
+        </PinnedMessage>
       </Pinned>
     )}
     <Tweet>
-      <Avatar src={process.env.PUBLIC_URL + "img/avatar.png"} alt="Avatar" />
+      <Avatar src={`${process.env.PUBLIC_URL}img/${user.avatar}`} alt="Avatar" />
       <div className="col-xs">
         <UserInfo>
-          <UserName>{props.username}</UserName>
-          <UserLogin to="/EveryInteract">@{props.login}</UserLogin>
-          <TweetDate>• {props.date}</TweetDate>
+          <UserName>
+            {user.name}
+          </UserName>
+          <UserLogin to={`/${user.login}`}>
+            @
+            {user.login}
+          </UserLogin>
+          <TweetDate>
+            •
+            {date}
+          </TweetDate>
         </UserInfo>
-        <Content>{props.children}</Content>
+        <Content>
+          <Text large={largeText}>
+            {text}
+          </Text>
+          {image && <TweetImage src={image} alt="Tweet Image" />}
+          {preview && <SitePreview data={preview} />}
+        </Content>
         <Actions>
           <Action>
             <ActionIcon src={commentsIcon} alt="Comments" />
-            <ActionNumber>{props.comments}</ActionNumber>
+            <ActionNumber>
+              {comments}
+            </ActionNumber>
           </Action>
           <Action>
             <ActionIcon src={retweetsIcon} alt="Retweets" />
-            <ActionNumber>{props.retweets}</ActionNumber>
+            <ActionNumber>
+              {retweets}
+            </ActionNumber>
           </Action>
-          {props.liked ? (
+          {liked ? (
             <Action>
               <ActionLove src={lovesRedIcon} alt="Loves" />
-              <LovesNumber>{props.loves}</LovesNumber>
+              <LovesNumber>
+                {loves}
+              </LovesNumber>
             </Action>
           ) : (
             <Action>
               <ActionLove src={lovesIcon} alt="Loves" />
-              <ActionNumber>{props.loves}</ActionNumber>
+              <ActionNumber>
+                {loves}
+              </ActionNumber>
             </Action>
           )}
           <Action>

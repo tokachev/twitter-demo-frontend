@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const Menu = styled.div`
   border-bottom: 1px solid #e1e8ed;
@@ -33,15 +33,15 @@ const MenuLink = styled(NavLink)`
   }
 `;
 
-export default () => (
+export default ({ user }) => (
   <Menu>
-    <MenuLink exact to="/EveryInteract">
+    <MenuLink exact to={`/${user.login}`}>
       Tweets
     </MenuLink>
-    <MenuLink exact to="/EveryInteract/with_replies">
+    <MenuLink exact to={`/${user.login}/with_replies`}>
       Tweets & replies
     </MenuLink>
-    <MenuLink exact to="/EveryInteract/media">
+    <MenuLink exact to={`/${user.login}/media`}>
       Media
     </MenuLink>
   </Menu>

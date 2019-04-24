@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import followersIcon from "./img/icon-followers.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import followers from '../../data/followers';
+import followersIcon from './img/icon-followers.svg';
 
 const CommonFollowers = styled.div`
   margin-bottom: 32px;
@@ -47,63 +48,22 @@ const Avatar = styled.img`
   }
 `;
 
-export default props => (
+export default ({ user }) => (
   <CommonFollowers>
     <Title>
       <Icon src={followersIcon} alt="Followers you now" />
-      <FollowersLink to="/EveryInteract/common_followers">
+      <FollowersLink to={`/${user.login}/common-followers`}>
         6 Followers you now
       </FollowersLink>
     </Title>
     <List>
-      <Follower>
-        <Link to="/follower1">
-          <Avatar
-            src={process.env.PUBLIC_URL + "img/follower-1.png"}
-            alt="Follower 1"
-          />
-        </Link>
-      </Follower>
-      <Follower>
-        <Link to="/follower2">
-          <Avatar
-            src={process.env.PUBLIC_URL + "img/follower-2.png"}
-            alt="Follower 2"
-          />
-        </Link>
-      </Follower>
-      <Follower>
-        <Link to="/follower3">
-          <Avatar
-            src={process.env.PUBLIC_URL + "img/follower-3.png"}
-            alt="Follower 3"
-          />
-        </Link>
-      </Follower>
-      <Follower>
-        <Link to="/follower4">
-          <Avatar
-            src={process.env.PUBLIC_URL + "img/follower-4.png"}
-            alt="Follower 4"
-          />
-        </Link>
-      </Follower>
-      <Follower>
-        <Link to="/follower5">
-          <Avatar
-            src={process.env.PUBLIC_URL + "img/follower-5.png"}
-            alt="Follower 5"
-          />
-        </Link>
-      </Follower>
-      <Follower>
-        <Link to="/follower6">
-          <Avatar
-            src={process.env.PUBLIC_URL + "img/follower-6.png"}
-            alt="Follower 6"
-          />
-        </Link>
-      </Follower>
+      {followers.map(follower => (
+        <Follower>
+          <Link to={`/${follower.login}`}>
+            <Avatar src={`${process.env.PUBLIC_URL}img/${follower.avatar}`} alt={follower.name} />
+          </Link>
+        </Follower>
+      ))}
     </List>
   </CommonFollowers>
 );

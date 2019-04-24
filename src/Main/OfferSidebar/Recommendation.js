@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import Button from "../../Button";
-import tickIcon from "../../img/icon-tick.svg";
-import deleteIcon from "../../img/icon-delete.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Button from '../../Button';
+import tickIcon from '../../img/icon-tick.svg';
+import deleteIcon from '../../img/icon-delete.svg';
 
 const Recommendation = styled.li`
   display: flex;
@@ -73,19 +73,28 @@ const Delete = styled.img`
   padding-right: 17px;
 `;
 
-export default props => (
+export default ({
+  avatar, name, verified, login,
+}) => (
   <Recommendation>
     <Avatar
-      src={process.env.PUBLIC_URL + "img/" + props.avatar + ".png"}
-      alt={props.name}
+      src={`${process.env.PUBLIC_URL}img/${avatar}`}
+      alt={name}
     />
     <Follow>
       <Account to="#">
-        <Name>{props.name}</Name>
-        {props.verified && <img src={tickIcon} alt="Verified" />}
-        <Login>@{props.login}</Login>
+        <Name>
+          {name}
+        </Name>
+        {verified && <img src={tickIcon} alt="Verified" />}
+        <Login>
+        @
+          {login}
+        </Login>
       </Account>
-      <FollowButton>Follow</FollowButton>
+      <FollowButton>
+      Follow
+      </FollowButton>
     </Follow>
     <Delete src={deleteIcon} alt="Delete Recommendation" />
   </Recommendation>

@@ -1,8 +1,9 @@
-import React from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import Recommendation from "./Recommendation";
-import peopleIcon from "../../img/icon-people.svg";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import Recommendation from './Recommendation';
+import recommendations from '../../data/recommendations';
+import peopleIcon from '../../img/icon-people.svg';
 
 const Wrapper = styled.div`
   margin-top: 8px;
@@ -40,6 +41,18 @@ const RecommendLink = styled(NavLink)`
   }
 `;
 
+const Refresh = styled.a`
+  font-size: 13px;
+  line-height: 15px;
+  color: #1da1f2;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const FindPeople = styled.div`
   display: flex;
   align-items: center;
@@ -53,33 +66,35 @@ export default () => (
   <Wrapper>
     <List>
       <Title>
-        <Text>Who to follow</Text>
-        <Separator>•</Separator>
-        <RecommendLink to="/recomendations">Refresh</RecommendLink>
-        <Separator>•</Separator>
-        <RecommendLink to="/recomendations/all">View All</RecommendLink>
+        <Text>
+Who to follow
+        </Text>
+        <Separator>
+•
+        </Separator>
+        <Refresh>
+Refresh
+        </Refresh>
+        <Separator>
+•
+        </Separator>
+        <RecommendLink to="/recommendations">
+View All
+        </RecommendLink>
       </Title>
-      <Recommendation
-        avatar="avatar-1"
-        name="AppleInsider"
-        login="appleinsider"
-        verified={false}
-      />
-      <Recommendation
-        avatar="avatar-2"
-        name="Creode"
-        login="Creode"
-        verified={true}
-      />
-      <Recommendation
-        avatar="avatar-3"
-        name="Epiphany Search"
-        login="EpiphanySearch"
-        verified={false}
-      />
+      {recommendations.map(recommendation => (
+        <Recommendation
+          avatar={recommendation.avatar}
+          name={recommendation.name}
+          login={recommendation.login}
+          verified={recommendation.verified}
+        />
+      ))}
       <FindPeople>
         <img src={peopleIcon} alt="Find people you know" />
-        <FindLink to="/find">Find people you know</FindLink>
+        <FindLink to="/find_people">
+Find people you know
+        </FindLink>
       </FindPeople>
     </List>
   </Wrapper>

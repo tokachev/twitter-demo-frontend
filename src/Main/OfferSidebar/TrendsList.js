@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import Trend from "./Trend";
+import React from 'react';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+import Trend from './Trend';
 
 const Wrapper = styled.div`
   margin-top: 8px;
@@ -43,23 +43,39 @@ const ChangeLink = styled(NavLink)`
   }
 `;
 
+const trends = [
+  { name: '#BringYouDogToWorkToday' },
+  { name: '#FridayFeeling', count: 12.100 },
+  {
+    name: '#BrexiAnniversary',
+    description: "It's one year since the UK voated to leave European Union",
+  },
+  { name: 'HMS Queen Elizabeth', count: 1.036 },
+  { name: 'Joe Budden', count: 1.036 },
+  { name: 'Trident', count: 6.136 },
+];
+
 export default () => (
   <Wrapper>
     <List>
       <Title>
-        <Text>United Kindow Trends</Text>
-        <Separator>•</Separator>
-        <ChangeLink to="/change_trends">Change</ChangeLink>
+        <Text>
+United Kindow Trends
+        </Text>
+        <Separator>
+•
+        </Separator>
+        <ChangeLink to="/change_trends">
+Change
+        </ChangeLink>
       </Title>
-      <Trend name="#BringYouDogToWorkToday" />
-      <Trend name="#FridayFeeling" count="12.1K" />
-      <Trend
-        name="#BrexiAnniversary"
-        description="It's one year since the UK voated to leave European Union"
-      />
-      <Trend name="HMS Queen Elizabeth" count="1,036" />
-      <Trend name="Joe Budden" count="1,036" />
-      <Trend name="Trident" count="6,136" />
+      {trends.map(trend => (
+        <Trend
+          name={trend.name}
+          count={trend.count}
+          description={trend.description}
+        />
+      ))}
     </List>
   </Wrapper>
 );

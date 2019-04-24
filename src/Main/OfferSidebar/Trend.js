@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Trend = styled.li`
   list-style: none;
@@ -31,10 +31,20 @@ const TweetsCount = styled.span`
   font-size: 13px;
 `;
 
-export default props => (
+export default ({ name, description, count }) => (
   <Trend>
-    <Name to={`/search?q=${props.name}`}>{props.name}</Name>
-    <Description>{props.description}</Description>
-    {props.count && <TweetsCount>{props.count} Tweets</TweetsCount>}
+    <Name to={`/search?q=${name}`}>
+      {name}
+    </Name>
+    <Description>
+      {description}
+    </Description>
+    {count && (
+      <TweetsCount>
+        {count}
+        Tweets
+      </TweetsCount>
+    )}
+    {' '}
   </Trend>
 );

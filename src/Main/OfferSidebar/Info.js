@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { getYear } from "date-fns";
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { getYear } from 'date-fns';
 
 const Info = styled.div`
   display: flex;
@@ -26,14 +26,31 @@ const InfoLink = styled(Link)`
   }
 `;
 
-export default props => (
+export default () => (
   <Info>
-    <Copyright>© {getYear(new Date())} Twiiter</Copyright>
-    <InfoLink to="/about">About</InfoLink>
-    <InfoLink to="/help">Help Center</InfoLink>
-    <InfoLink to="/terms">Terms</InfoLink>
-    <InfoLink to="/privacy">Privacy policy</InfoLink>
-    <InfoLink to="/cookies">Cookies</InfoLink>
-    <InfoLink to="/ads">Ads info</InfoLink>
+    <Copyright>
+      ©
+      {getYear(new Date())}
+      {' '}
+Twiiter
+    </Copyright>
+    <InfoLink to="/about">
+About
+    </InfoLink>
+    <InfoLink to="/help">
+Help Center
+    </InfoLink>
+    <InfoLink to="/terms">
+Terms
+    </InfoLink>
+    <InfoLink to="/privacy">
+Privacy policy
+    </InfoLink>
+    <InfoLink to="/cookies">
+Cookies
+    </InfoLink>
+    <InfoLink to="/ads">
+Ads info
+    </InfoLink>
   </Info>
 );
